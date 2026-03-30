@@ -12,6 +12,9 @@ void clearBuffer(void) {
         while ( (waste = getchar()) != '\n');
 }
 
+// 
+//Reads user input for plain/cipher-text and keyword (based off 
+//second param determining if is keyword)
 void inputChars(char *inputChars, bool isKeyword) {
   int i = 1;
   int limit = 32;
@@ -73,26 +76,16 @@ void decrypt(void) {
 	char Char;
 
 	printf("Enter ciphertext: ");
-	int i = 1;
-	while (enteredChars[i-1] != '\n' && i < 1000) {
-		enteredChars[i] = tolower(getchar());
-		i++;
-		}
-	chars_end = i - 2;
-	if (i == 2) {
+  inputChars(enteredChars,false);
+	if (chars_end == 0) {
 		return;
 	}
 	
 	printf("\nEnter keyword: ");
-	i = 1;
-	while (i < 36 && keyword[i-1] != '\n') {
-		keyword[i] = tolower(getchar());
-		i++;
-	}
-	if (i == 2) {
+    inputChars(keyword,true);
+		if (keyword_end == 0) {
 		return;
 	}
-	keyword_end = i - 2;
 	int kwPos = 1;
 	printf("Plaintext: ");
 	for (int x = 1; x <= chars_end; x++) {
