@@ -12,6 +12,24 @@ void clearBuffer(void) {
         while ( (waste = getchar()) != '\n');
 }
 
+void inputChars(char *inputChars, bool isKeyword) {
+  int i = 1;
+  int limit = 32;
+  int *input_end = &keyword_end;
+  if (isKeyword == false) {
+    limit = 999;
+    input_end = &chars_end;
+  }
+
+  while (i < limit && inputChars[i - 1] != '\n' ) {
+    inputChars[i] = tolower(getchar());
+    i++;
+  }
+  *input_end = i - 2;
+  
+  return;
+}
+
 void encrypt(void) {
  /*  TODO: Multiple words */	
 	signed int curChar;
@@ -20,26 +38,9 @@ void encrypt(void) {
 	char Char;
 
 	printf("Enter plaintext: ");
-	int i = 1;
-	while (enteredChars[i-1] != '\n' && i < 1000) {
-		enteredChars[i] = tolower(getchar());
-		i++;
-		}
-	chars_end = i - 2;
-	if (i == 2) {
-		return;
-	}
-	
+  inputChars(enteredChars, false);	
 	printf("\nEnter keyword: ");
-	i = 1;
-	while (i < 36 && keyword[i-1] != '\n') {
-		keyword[i] = tolower(getchar());
-		i++;
-	}
-	if (i == 2) {
-		return;
-	}
-	keyword_end = i - 2;
+  inputChars(keyword,true);
 	int kwPos = 1;
 	printf("Ciphertext: ");
 	for (int x = 1; x <= chars_end; x++) {
