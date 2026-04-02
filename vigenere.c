@@ -15,6 +15,7 @@ void clearBuffer(void) {
 // 
 //Reads user input for plain/cipher-text and keyword (based off 
 //second param determining if is keyword)
+//
 void inputChars(char *inputChars, bool isKeyword) {
   int i = 1;
   int limit = 32;
@@ -34,7 +35,6 @@ void inputChars(char *inputChars, bool isKeyword) {
 }
 
 void encrypt(void) {
- /*  TODO: Multiple words */	
 	signed int curChar;
 	signed int kwInt;
 	char cChar;
@@ -69,7 +69,6 @@ printf("\n");
 }
 
 void decrypt(void) {
-/* TODO: caps normalisation */	
 	int curChar;
 	int kwInt;
 	char cChar;
